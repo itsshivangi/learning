@@ -28,3 +28,43 @@ import pandas
 data = pandas.read_csv("weather_data.csv")
 print(data)
 print(data["temp"])
+
+data_dict = data.to_dict()
+print(data_dict)
+
+data["temp"].to_list()
+print(len(data["temp"].to_list()))
+
+average_temp = sum(data["temp"].to_list()) / len(data["temp"].to_list())
+print(average_temp)
+
+#OR 
+
+print(data["temp"].mean())
+
+max_temp = data["temp"].max()
+print(max_temp)
+
+#Get data in columns
+print(data["condition"])
+print(data.condition)
+
+#Get data in rows
+print(data[data.day == "Monday"])
+print(data[data.temp == data.temp.max()])
+
+monday = data[data.day == "Monday"]
+print(monday.condition)
+
+monday_temp = monday.temp[0]
+monday_temp_F = monday_temp * 9/5 + 32
+print(monday_temp_F)
+
+#CREATE A DATA FRAME FROM SCRATCH
+data_dict = {
+    "students": ["Amy", "James", "Angela"],
+    "scores": [76, 56, 65]
+}
+data = pandas.DataFrame(data_dict)
+print(data)
+data.to_csv("new_data.csv")    
